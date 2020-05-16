@@ -6,24 +6,26 @@ struct Node{
     Node* link;
 };
 Node* head;
-int m;
+
 void Insert(int x){
-    //m = m+1;
-    //cout<<m<<"\n";
     Node* temp = new Node();
     temp -> value = x;
     temp -> link = NULL;
     if(head == NULL){
         head = temp;
+        return;
     }
-    Node * temp1 = head;
+    Node* temp1 = head;
     while(temp1 -> link != NULL){
          temp1 = temp1 -> link;
     }
-    temp1  = temp;
+    temp1 -> link  = temp;
+    //temp -> link = NULL;
 }
+
 void Print(){
     Node* temp = head;
+    cout<<"List is: \n";
     while(temp != NULL){
         cout<<temp -> value<<" ";
         temp = temp -> link;
@@ -41,5 +43,5 @@ int main(){
         cin>>x;
         Insert(x);
     }
-    Print();
+    Print();    
 }
