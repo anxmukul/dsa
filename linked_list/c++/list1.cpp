@@ -25,9 +25,9 @@ int main(){
     }
     temp1 -> link = temp;       //link for temp1 stored in node 1
     cout<<temp -> data<<"\n"; 
-    cout<<A<<"\n";
-    cout<<temp -> link<<"\n";
-    cout<<temp1 -> link<<"\n";
+    //cout<<A<<"\n";
+    //cout<<temp -> link<<"\n";
+    //cout<<temp1 -> link<<"\n";
 
     // Adding 1 more node in list
     
@@ -41,7 +41,23 @@ int main(){
     }
     temp2 -> link =  temp;
     cout<<temp -> data<<"\n";
-    cout<<temp2 -> link<<"\n";
+    //cout<<temp2 -> link<<"\n";
+    
+    temp = new Node();
+    temp -> data = 14;
+    temp -> link = NULL;
+    Node* temp3 = A;
+    while (temp3 -> link != NULL)
+    {
+        temp3 = temp3 -> link;
+    }
+    temp3 -> link = temp;
+    //cout<<temp->data<<"\n";
+    Node* temporary = A;
+    while(temporary -> link != NULL){
+        temporary = temporary -> link;
+        cout<<temporary -> data<<" ";
+    }
 
     return 0;
 }
