@@ -51,7 +51,7 @@ void simplify(struct node *h){
             if(ptr->exp == ptr1->exp){
                 ptr->cof = (ptr->cof) + (ptr1->cof);
                 prv->next = ptr1->next;
-                free(ptr);
+                free(ptr1);
                 ptr1 = prv; // mast line h re baba
             }
             prv = ptr1;
@@ -69,5 +69,5 @@ int main(){
     printf("After joining the polynomial become:\n");
     display(h1);
     simplify(h1);
-    //display(h1);
+    display(h1);
 }
