@@ -13,7 +13,7 @@ void create(struct node **h){
     for(int i=0; i<n; i++){
         cur = (struct node *)malloc(sizeof(struct node));
         cur->next = NULL;
-        printf("Enter the coefficient and emponent of node %d:\n", i+1);
+        printf("Enter the coefficient and exponent of node %d:\n", i+1);
         scanf("%d%d", &cur->cof, &cur->exp);
         if(*h == NULL){
             *h = cur;
@@ -42,6 +42,23 @@ void join(struct node **head1, struct node *head2){
     for(ptr = *head1; ptr->next != NULL; ptr = ptr->next);
     ptr->next = head2;
 }
+void simplify(struct node *h){
+    struct node *ptr, *prv, *ptr1;
+    for(ptr = h; ptr != NULL; ptr = ptr ->next){
+        prv = ptr;
+        ptr1 = ptr->next;
+        while(ptr1 != NULL){
+            if(ptr->exp == ptr1->exp){
+                ptr->cof = (ptr->cof) + (ptr1->cof);
+                prv->next = ptr1->next;
+                free(ptr);
+                ptr1 = prv; // mast line h re baba
+            }
+            prv = ptr1;
+            ptr1 = ptr1->next;
+        }
+    }
+}
 int main(){
     struct node *h1 = NULL, *h2 = NULL;
     create(&h1);
@@ -49,5 +66,8 @@ int main(){
     create(&h2);
     display(h2);
     join(&h1, h2);
+    printf("After joining the polynomial become:\n");
     display(h1);
+    simplify(h1);
+    //display(h1);
 }
