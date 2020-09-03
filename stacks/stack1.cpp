@@ -1,6 +1,6 @@
+//stack implimentation using array
 #include <bits/stdc++.h>
 using namespace std;
-//#define max_size = 101
 int a[10];
 int top = -1;
 
