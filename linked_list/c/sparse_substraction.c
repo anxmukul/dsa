@@ -32,6 +32,29 @@ void display(struct node *h){
         ptr=ptr->next;
     }
 }
+void simplify(struct node **h){
+    struct node *ptr, *prv, *p;
+    prv = *h;
+    p = ptr = (*h)->next;
+    if(p->v == 0){
+        (*h)->next = ptr->next;
+        p = p->next;
+        free(ptr);
+    }else{
+        prv = p;
+        p = ptr = p->next;
+        while(p != NULL){
+            if(p->v == 0){
+                prv -> next = ptr->next;
+                p = p->next;
+                free(ptr);
+                ptr = p;
+            }
+            prv = p;
+            p = ptr = p->next;
+        }
+    }
+}
 void substract(struct node *h1, struct node *h2, struct node **h){
     struct node *ptr, *p1, *p2, *temp;
     if(!(h1->r == h2->r && h1->c == h2->c)){
@@ -86,6 +109,7 @@ int main(){
     printf("2nd ");
     display(h2);
     substract(h1,h2,&h3);
+    simplify(&h3);
     printf("After substraction ");
     display(h3);
 }
