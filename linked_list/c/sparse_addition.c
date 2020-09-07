@@ -33,7 +33,7 @@ void display(struct node *h){
     }
 }
 void add(struct node *h1, struct node *h2, struct node **h){
-    struct node *ptr, *p1, *p2;
+    struct node *ptr, *p1, *p2, *temp;
     if(!(h1->r == h2->r && h1->c == h2->c)){
         return;
     }
@@ -60,7 +60,20 @@ void add(struct node *h1, struct node *h2, struct node **h){
         ptr->next = cur;
         ptr = cur;
     }
-    
+    for(p1 = (*h)->next; p1 != NULL; p1 = p1->next ){
+        temp = p1;
+        p2 = p1->next;
+        while(p2 != NULL){
+            if(p1->r == p2->r && p1->c == p2->c){
+                p1->v = p1->v + p2->v;
+                temp -> next = p2->next;
+                free(p2);
+                p2 = temp;
+            }
+            temp = p2;
+            p2 = p2->next;
+        }
+    }   
 }
 int main(){
     struct node *h1, *h2, *h3;
