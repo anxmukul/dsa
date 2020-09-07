@@ -75,18 +75,6 @@ void substract(struct node *h1, struct node *h2, struct node **h){
             p2 = p2->next;
         }
     }  
-    /*printf("Checking\n");
-    p1 = (*h)->next;
-    while(p1->next != NULL){
-        temp = p1;
-        if(p1->v == 0){
-            p1 = temp->next;
-            free(temp);
-        }
-        else{
-            p1 = p1->next;
-        }
-    }*/
 }
 int main(){
     struct node *h1, *h2, *h3;
