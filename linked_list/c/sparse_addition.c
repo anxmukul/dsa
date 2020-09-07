@@ -73,7 +73,7 @@ void add(struct node *h1, struct node *h2, struct node **h){
             temp = p2;
             p2 = p2->next;
         }
-    }   
+    }    
 }
 int main(){
     struct node *h1, *h2, *h3;
