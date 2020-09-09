@@ -6,24 +6,20 @@ typedef struct{
     char data[MAX];
     int top;
 }STACK;
-
+STACK s1;
 void push(STACK *s, int v){
     if(s->top == MAX -1){
         printf("Stack Overflow\n");
-        //return 1;
     }
     s->top++;
     s->data[s->top] = v;
-    //return 0;
 }
 void pop(STACK *s, int *v){
     if(s->top == -1){
         printf("Stack Underflow\n");
-        //return 1;
     }
     *v = s->data[s->top];
     s->top--;
-    //return 0;
 }
 int get_v(char o){
     int t;
@@ -59,8 +55,6 @@ int is_LtoH(char o1, char o2){
     }
 }
 void infix_to_postfix(char *inp, char *out){
-    STACK s1;
-    s1.top = -1;
     int i=0, k=0;
     char m,n;
     while(inp[i] != '\0'){
@@ -108,12 +102,10 @@ void infix_to_postfix(char *inp, char *out){
     }
 }
 int main(){
-    int i = 0;
-    char inp[] = {'a','/','b','-','k','*','(','d','-','e','*','f','+','g',')','/','p'};
-    char out[MAX];
-    infix_to_postfix(inp, out);
-    while(out[i] != '\0'){
-        printf("%c ", out[i]);
-        i++;
-    }
+    s1.top = -1;
+    char i[] = "a/b-k*(d-e*f+g)/p";
+    char o[MAX];
+    printf("%s", i);
+    infix_to_postfix(i, o);
+    printf("\n%s",o);
 }
