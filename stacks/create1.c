@@ -3,7 +3,6 @@
 struct node {
     int data;
     struct node *next;
-    //struct node *top;
 };
 typedef struct{
     struct node *top;
@@ -59,7 +58,7 @@ int main(){
     printf("1. To push an element.\n2. To pop.\n3. TO get top element.\n4. To dispaly whole stack.\nPress 0 to exit.\n");
     while(1>0){
         printf("Choose you number\n");
-        int c, n, k;
+        int c, n;
         scanf("%d", &c);
         if(c == 1){
             printf("Enter data:\n");
