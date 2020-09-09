@@ -1,7 +1,7 @@
 //Converting infix expression to postfix.
 #include <stdio.h>
 #include <stdio.h>
-#define MAX 20
+#define MAX 30
 typedef struct{
     char data[MAX];
     int top;
@@ -10,13 +10,15 @@ STACK s1;
 void push(STACK *s, int v){
     if(s->top == MAX -1){
         printf("Stack Overflow\n");
+        return;
     }
     s->top++;
     s->data[s->top] = v;
 }
-void pop(STACK *s, int *v){
+void pop(STACK *s, char *v){
     if(s->top == -1){
         printf("Stack Underflow\n");
+        return;
     }
     *v = s->data[s->top];
     s->top--;
@@ -26,20 +28,20 @@ int get_v(char o){
     switch(o){
         case '+':
         case '-':
-        t =1;
-        break;
+            t = 1;
+            break;
         case '*':
         case '/':
-        t = 2;
-        break;
+            t = 2;
+            break;
         case '^':
-        t = 3;
-        break;
+            t = 3;
+            break;
     }
     return t;
 }
 int is_operand(int c){
-    if(65<= c >= 90){
+    if(c >= 65 && c <= 90 || c >= 97 && c <= 122){
         return 1;
     }
     else{
@@ -56,7 +58,7 @@ int is_LtoH(char o1, char o2){
 }
 void infix_to_postfix(char *inp, char *out){
     int i=0, k=0;
-    char m,n;
+    int m,n;
     while(inp[i] != '\0'){
     if(is_operand(inp[i])){
         out[k++] = inp[i];
@@ -67,7 +69,7 @@ void infix_to_postfix(char *inp, char *out){
         else if(inp[i] == ')'){
             while(1){
                 pop(&s1, &m);
-                if(m == "("){
+                if(m == '('){
                     break;
                 }
                 out[k++] = m;
@@ -90,9 +92,8 @@ void infix_to_postfix(char *inp, char *out){
                 else{
                     out[k++] = n;
                     i--;
-                    continue;
                 }
-            }
+            }           
         }
         i += 1;
     }
@@ -100,12 +101,12 @@ void infix_to_postfix(char *inp, char *out){
         pop(&s1, &m);
         out[k++] = m;
     }
+    out[k] = '\0';
 }
 int main(){
     s1.top = -1;
-    char i[] = "a/b-k*(d-e*f+g)/p";
-    char o[MAX];
-    printf("%s", i);
-    infix_to_postfix(i, o);
-    printf("\n%s",o);
+    char input[] = "a/b-k*(d-e*f+g)/p";
+    char output[MAX];
+    infix_to_postfix(input, output);
+    printf("%s\n", output);
 }
