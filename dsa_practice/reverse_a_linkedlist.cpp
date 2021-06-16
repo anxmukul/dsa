@@ -28,7 +28,16 @@ void printList(struct node *temp){
 	}
 	cout<<endl;
 }
-void reverseList(){
+node* reverseRecursive(node *h){
+	if(h == NULL || h->next == NULL){
+		return h;
+	}
+	node *rest = reverseRecursive(h->next);
+	h->next->next = h;
+	h->next = NULL;
+	return rest;
+}
+void reverseListiterative(){
 	struct node *cur, *prev, *far;
 	cur = head;
 	prev = NULL;
@@ -49,6 +58,8 @@ int main(){
 		createList(element);
 	}
 	printList(head);
-	reverseList();
+	reverseListiterative();
 	printList(head);
+	struct node *rev = reverseRecursive(head);
+	printList(rev);
 }
