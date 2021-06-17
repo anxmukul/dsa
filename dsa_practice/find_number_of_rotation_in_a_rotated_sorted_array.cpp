@@ -1,13 +1,20 @@
 // No. of rotation in rottated sorted array will be equal to
-// INdex of minimum element in that array
+// Index of minimum element in that array
 #include <bits/stdc++.h>
 using namespace std;
 int searchIndex(int a[], int n)
 {
+	if (a[0] < a[n - 1])
+	{
+		return 0;
+	}
 	int start = 0, end = n - 1, mid, next, prev, pivot = -1;
 	while (start <= end)
 	{
-		
+		if (a[start] <= a[end])
+		{
+			return start;
+		}
 		int mid = start + (end - start) / 2;
 		int next = (mid + 1) % n;
 		int prev = (mid - 1 + n) % n;
