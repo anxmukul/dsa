@@ -4,17 +4,15 @@
 using namespace std;
 int searchIndex(int a[], int n)
 {
-	if (a[0] < a[n - 1])
-	{
+	if(a[0] < a[n-1]){
 		return 0;
 	}
 	int start = 0, end = n - 1, mid, next, prev, pivot = -1;
 	while (start <= end)
 	{
-		if (a[start] <= a[end])
-		{
-			return start;
-		}
+		if(a[start] <= a[end]){
+            return start;
+        }
 		int mid = start + (end - start) / 2;
 		int next = (mid + 1) % n;
 		int prev = (mid - 1 + n) % n;
@@ -48,6 +46,6 @@ int main()
 		cin >> arr[i];
 	}
 	int x = searchIndex(arr, no); // Is a binary seach based algorithm
-	cout << "Min value index or pivot is = " << x << endl;
+	cout << "Min value index  = " << x << endl;
 	return 0;
 }
