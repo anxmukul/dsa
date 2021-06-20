@@ -34,14 +34,14 @@ int top(STACK *s){
 int main(){
     STACK s1;
     s1.top = -1;
-    printf("1.Push.\n2. Ppop.\n3. Top.\n4. Press 0 to exit.\n");
+    printf("1. Push.\n2. Pop.\n3. Top.\n4. Press 0 to exit.\n");
     while(1>0){
         printf("Choose you number\n");
         int c, n, k, m;
-        scanf("%d", &c);
+        cin>>c;
         if(c == 1){
             printf("Enter data:\n");
-            scanf("%d", &n);
+            cin>>n;
             int k = push(&s1, n);
         }
         else if(c == 2){
@@ -57,4 +57,5 @@ int main(){
             printf("Invalid input\n");
         }
     }
+	return 0;
 }
