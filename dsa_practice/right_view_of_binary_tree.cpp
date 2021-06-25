@@ -1,4 +1,4 @@
-// Left view of binay tree is set of nodes visible when tree os visited from left side
+// Reft view of binay tree is set of nodes visible when tree os visited from right side
 #include <bits/stdc++.h>
 using namespace std;
 struct node
@@ -18,7 +18,7 @@ node *create_node(int v)
     return cur;
 }
 int max_level = -1;
-void leftViewUsingRecursion(node * root, int level){
+void rightViewUsingRecursion(node * root, int level){
 	if (root == NULL) return;
  
     if (max_level < level)
@@ -26,25 +26,25 @@ void leftViewUsingRecursion(node * root, int level){
         cout << root->data << " ";
         max_level = level;
     }
-	leftViewUsingRecursion(root->right, level + 1);
-    leftViewUsingRecursion(root->left, level + 1);
+	rightViewUsingRecursion(root->right, level + 1);
+    rightViewUsingRecursion(root->left, level + 1);
 }
-vector <int> leftView(node *root){
-	vector <int> lview;
+vector <int> rightView(node *root){
+	vector <int> rview;
 	if(root == NULL){
-		return lview;
+		return rview;
 	}
 	vector <node *> temp;
 	queue <node *> addressQueue;
 	addressQueue.push(root);
 	addressQueue.push(NULL);
-	lview.push_back(root->data);
+	rview.push_back(root->data);
 	while(!addressQueue.empty()){
 		node *cur = addressQueue.front();
 		addressQueue.pop();
 		if(cur == NULL){
 			if(temp.size()){						
-				lview.push_back(temp.back()->data);
+				rview.push_back(temp.back()->data);
 			}
 			addressQueue.push(NULL);
 			temp.clear();
@@ -65,7 +65,7 @@ vector <int> leftView(node *root){
 			temp.push_back(cur->right);
 		}
 	}
-	return lview;
+	return rview;
 }
 int main()
 {
@@ -78,12 +78,12 @@ int main()
     root->right = create_node(3);
     root->right->left = create_node(6);
     root->right->right = create_node(7);
-    vector <int> left_view = leftView(root);
+    vector <int> left_view = rightView(root);
 	for(auto i=left_view.begin(); i<left_view.end(); i++){
 		cout<<*i<<" ";
 	}
 	cout<<"\n";
-	leftViewUsingRecursion(root, 0);
+	rightViewUsingRecursion(root, 0);
 	cout<<"\n";
 }
 
