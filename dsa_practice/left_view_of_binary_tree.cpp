@@ -17,7 +17,19 @@ node *create_node(int v)
     }
     return cur;
 }
-int max_level = -1;;
+int max_level = -1;
+void leftViewUsingRecursion(node * root, int level){
+	if (root == NULL) return;
+ 
+    if (max_level < level)
+    {
+        cout << root->data << " ";
+        max_level = level;
+    }
+
+    leftViewUsingRecursion(root->left, level + 1);
+    leftViewUsingRecursion(root->right, level + 1);
+}
 vector <int> leftView(node *root){
 	vector <int> lview;
 	if(root == NULL){
@@ -71,6 +83,8 @@ int main()
 	for(auto i=left_view.begin(); i<left_view.end(); i++){
 		cout<<*i<<" ";
 	}
+	cout<<"\n";
+	leftViewUsingRecursion(root, 0);
 	cout<<"\n";
 }
 
