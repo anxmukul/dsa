@@ -62,6 +62,7 @@ int main()
         cout<<*i<<" ";
     }
 	cout<<"\n";
+	return 0;
 }
 
 //More approach are on geekforgeek
